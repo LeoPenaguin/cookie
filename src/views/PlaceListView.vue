@@ -1,5 +1,5 @@
 <template>
-  <main class="p-4">
+  <main>
     <h1>Cookie Places in Lyon</h1>
     <div class="flex flex-col gap-4">
       <div v-for="place in formStore.placesData" :key="place.id"

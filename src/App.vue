@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app px-4">
     <TopBar class="position-top" />
     <BottomNavigation class="position-bottom" />
     <RouterView />

@@ -1,9 +1,5 @@
-<script setup lang="ts">
-// No additional imports needed for this simple view
-</script>
-
 <template>
-  <main class="home">
+  <main>
     <section class="welcome">
       <h1>🍪 Welcome to Cookie Notes!</h1>
       <p>Your personal cookie tasting journal</p>

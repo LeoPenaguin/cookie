@@ -1,45 +1,53 @@
 <template>
   <main>
-    <h1>Add a New Note</h1>
-    <form>
-      <div>
-        <label for="cookie">Choose Cookie:</label>
-        <select id="cookie" name="cookie">
-          <option v-for="cookie in formStore.cookies" :key="cookie" :value="cookie">{{ cookie }}</option>
-        </select>
-      </div>
-      <div>
-        <label for="place">Choose Place:</label>
-        <select id="place" name="place">
-          <option v-for="place in formStore.places" :key="place" :value="place">{{ place }}</option>
-        </select>
-      </div>
-      <div>
-        <label for="taste">Taste (0-5):</label>
-        <input type="number" id="taste" name="taste" min="0" max="5">
-      </div>
-      <div>
-        <label for="appearance">Appearance (0-5):</label>
-        <input type="number" id="appearance" name="appearance" min="0" max="5">
-      </div>
-      <div>
-        <label for="texture">Texture (0-5):</label>
-        <input type="number" id="texture" name="texture" min="0" max="5">
-      </div>
-      <button type="submit">Add Note</button>
-    </form>
+    <div class="max-w-2xl mx-auto">
+      <h1>Add a New Note</h1>
+
+      <form>
+        <CustomSelect id="cookie" label="Choose Cookie" v-model="selectedCookie" :options="cookieOptions" />
+        <CustomSelect id="place" label="Choose Place" v-model="selectedPlace" :options="placeOptions" />
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <CustomInput id="taste" label="Taste (0-5):" type="number" min="0" max="5" v-model="taste" />
+          <CustomInput id="appearance" label="Appearance (0-5):" type="number" min="0" max="5" v-model="appearance" />
+          <CustomInput id="texture" label="Texture (0-5):" type="number" min="0" max="5" v-model="texture" />
+        </div>
+
+        <div class="pt-4">
+          <CustomButton text="Add Note" />
+        </div>
+      </form>
+    </div>
   </main>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import CustomButton from '@/components/CustomButton.vue';
+import CustomSelect from '@/components/CustomSelect.vue';
+import CustomInput from '@/components/CustomInput.vue';
 import useFormStore from '@/stores/formStore';
+import { ref, computed } from 'vue';
 
-export default {
-  setup() {
-    const formStore = useFormStore();
-    return {
-      formStore
-    };
-  }
-};
+const formStore = useFormStore();
+
+const selectedCookie = ref('');
+const selectedPlace = ref('');
+
+const cookieOptions = computed(() =>
+  formStore.cookies.map(cookie => ({
+    value: cookie,
+    text: cookie
+  }))
+);
+
+const placeOptions = computed(() =>
+  formStore.places.map(place => ({
+    value: place,
+    text: place
+  }))
+);
+
+const taste = ref(0);
+const appearance = ref(0);
+const texture = ref(0);
 </script>
