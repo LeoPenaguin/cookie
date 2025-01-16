@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-wrap gap-2 bg-gray-100 p-2 rounded-xl">
-    <span class="px-1.5 py-0.5 bg-red-100 text-red-500 rounded-md">{{ user }}</span>
+  <div class="flex flex-wrap gap-2 bg-gray-100 p-4 rounded-lg">
+    <span class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ user }}</span>
     <span>rated</span>
-    <span class="px-1.5 py-0.5 bg-brown-100 text-brown-700 rounded-md">{{ product }}</span>
+    <span class="px-2 py-1 bg-brown-100 text-brown-700 rounded">{{ product }}</span>
     <span>from</span>
-    <span class="px-1.5 py-0.5 bg-blue-100 text-blue-500 rounded-md">{{ place }}</span>
+    <span class="px-2 py-1 bg-blue-100 text-blue-600 rounded">{{ place }}</span>
   </div>
 </template>
 
