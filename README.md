@@ -1,6 +1,14 @@
-# cookie
+# Cookie Notes
 
-This template should help get you started developing with Vue 3 in Vite.
+Cookie Notes is a personal cookie tasting journal built with Vue 3 and Vite. This application allows users to rate and review different cookies from various places, keeping track of their tasting experiences.
+
+## Features
+
+- **User Profiles**: View user profiles and their associated notes.
+- **Notes Grouping**: Notes are grouped by date for easy browsing.
+- **Add Notes**: Users can add new notes with ratings for taste, appearance, and texture.
+- **View Notes**: Browse all notes and filter by user or place.
+- **Firebase Integration**: Utilizes Firebase for backend services including Firestore, Authentication, and Hosting.
 
 ## Recommended IDE Setup
 

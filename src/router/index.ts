@@ -3,6 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import AboutView from '@/views/AboutView.vue'
 import RateCookieView from '@/views/RateCookieView.vue'
 import LikeFeedView from '@/views/FeedView.vue'
+import CurrentUserView from '@/views/CurrentUserView.vue'
 import UserView from '@/views/UserView.vue'
 import PlaceListView from '@/views/PlaceListView.vue'
 import PlaceDetailView from '@/views/PlaceDetailView.vue'
@@ -33,6 +34,11 @@ const router = createRouter({
     {
       path: '/user',
       name: 'user',
+      component: CurrentUserView,
+    },
+    {
+      path: '/user/:id',
+      name: 'single user',
       component: UserView,
     },
     {

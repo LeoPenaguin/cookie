@@ -1,5 +1,9 @@
 export interface Note {
-  user: string;
+  id: number;
+  userId: number;
   product: string;
-  place: string;
+  placeId: number;
+  user?: string;
+  place?: string;
+  createdAt: string; // ISO date string
 }
