@@ -1,21 +1,26 @@
 <template>
   <div class="app px-4">
     <TopBar class="position-top" />
-    <BottomNavigation class="position-bottom" />
     <RouterView />
+    <BottomNavigation class="position-bottom" />
+    <AuthModal v-if="authModal.isOpen" />
   </div>
 </template>
 
 <script setup lang="ts">
-import BottomNavigation from './components/BottomNavigation.vue'
-import TopBar from './components/TopBar.vue'
+import useAuthModalStore from '@/stores/authModalStore'
+import AuthModal from '@/components/auth/AuthModal.vue'
+import BottomNavigation from '@/components/BottomNavigation.vue'
+import TopBar from '@/components/TopBar.vue'
 import { RouterView } from 'vue-router'
+
+const authModal = useAuthModalStore()
 </script>
 
 <style lang="scss">
 .app {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   max-width: 600px;
   margin: 0 auto;
 }

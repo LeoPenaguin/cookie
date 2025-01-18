@@ -1,5 +1,7 @@
 <template>
-  <main class="space-y-6">
+  <main>
+    <h1 class="text-2xl font-bold">Feed view</h1>
+
     <div v-for="group in groupedNotes" :key="group.date" class="space-y-3">
       <h3 class="text-lg text-gray-600">{{ formatRelativeDate(group.date) }}</h3>
       <div class="space-y-3">

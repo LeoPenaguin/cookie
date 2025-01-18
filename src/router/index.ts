@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import AboutView from '@/views/AboutView.vue'
 import RateCookieView from '@/views/RateCookieView.vue'
 import LikeFeedView from '@/views/FeedView.vue'
 import CurrentUserView from '@/views/CurrentUserView.vue'
@@ -15,11 +14,6 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: AboutView,
     },
     {
       path: '/rate-cookie',

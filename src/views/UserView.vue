@@ -1,7 +1,7 @@
 <template>
-  <div class="p-4">
+  <main>
     <div v-if="user">
-      <h1 class="text-2xl font-bold mb-4">{{ user.name }}</h1>
+      <h1 class="text-2xl font-bold">{{ user.name }}</h1>
       <div class="text-gray-600 mb-6">{{ user.email }}</div>
 
       <div class="space-y-4">
@@ -22,7 +22,7 @@
     <div v-else class="text-red-600">
       User not found
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">
@@ -63,9 +63,3 @@ const groupedNotes = computed(() => {
     .map(([date, notes]) => ({ date, notes }));
 });
 </script>
-
-<style scoped>
-.user-info {
-  margin-top: 1rem;
-}
-</style>

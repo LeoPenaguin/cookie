@@ -1,6 +1,6 @@
 <template>
   <button :class="[
-    'rounded-lg font-medium transition-colors duration-200 border-2',
+    'rounded-lg border-black text-black font-medium transition-colors duration-200 border-2',
     variantClasses[variant],
     sizeClasses[size]
   ]">
@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 interface ButtonProps {
-  variant?: 'primary' | 'secondary' | 'outline'
+  variant?: 'primary' | 'secondary'
   size?: 'small' | 'medium' | 'large'
   text: string
 }
@@ -22,9 +22,8 @@ withDefaults(defineProps<ButtonProps>(), {
 })
 
 const variantClasses = {
-  primary: 'bg-blue-500 border-blue-500 text-white hover:bg-blue-600 hover:border-blue-600',
-  secondary: 'bg-gray-500 border-gray-500 text-white hover:bg-gray-600 hover:border-gray-600',
-  outline: 'bg-transparent border-blue-500 text-blue-500 hover:bg-blue-50'
+  primary: 'border-blue-500 text-blue-500 hover:border-black hover:text-black',
+  secondary: 'border-gray-500 text-blue-500 hover:border-black hover:text-black',
 }
 
 const sizeClasses = {

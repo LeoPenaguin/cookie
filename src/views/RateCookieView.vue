@@ -1,23 +1,21 @@
 <template>
   <main>
-    <div class="max-w-2xl mx-auto">
-      <h1>Add a New Note</h1>
+    <h1 class="text-2xl font-bold">Rate cookie</h1>
 
-      <form>
-        <CustomSelect id="cookie" label="Choose Cookie" v-model="selectedCookie" :options="cookieOptions" />
-        <CustomSelect id="place" label="Choose Place" v-model="selectedPlace" :options="placeOptions" />
+    <form>
+      <CustomSelect id="cookie" label="Choose Cookie" v-model="selectedCookie" :options="cookieOptions" />
+      <CustomSelect id="place" label="Choose Place" v-model="selectedPlace" :options="placeOptions" />
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <CustomInput id="taste" label="Taste (0-5):" type="number" min="0" max="5" v-model="taste" />
-          <CustomInput id="appearance" label="Appearance (0-5):" type="number" min="0" max="5" v-model="appearance" />
-          <CustomInput id="texture" label="Texture (0-5):" type="number" min="0" max="5" v-model="texture" />
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <CustomInput id="taste" label="Taste (0-5):" type="number" min="0" max="5" v-model="taste" />
+        <CustomInput id="appearance" label="Appearance (0-5):" type="number" min="0" max="5" v-model="appearance" />
+        <CustomInput id="texture" label="Texture (0-5):" type="number" min="0" max="5" v-model="texture" />
+      </div>
 
-        <div class="pt-4">
-          <CustomButton text="Add Note" />
-        </div>
-      </form>
-    </div>
+      <div class="pt-4">
+        <CustomButton text="Add Note" />
+      </div>
+    </form>
   </main>
 </template>
 

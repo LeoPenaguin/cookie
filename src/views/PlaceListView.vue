@@ -1,6 +1,7 @@
 <template>
   <main>
-    <h1>Cookie Places in Lyon</h1>
+    <h1 class="text-2xl font-bold">Cookie Places in Lyon</h1>
+
     <div class="flex flex-col gap-4">
       <div v-for="place in formStore.placesData" :key="place.id"
         class="flex flex-col gap-2 bg-gray-100 hover:bg-gray-200 rounded-lg p-4">

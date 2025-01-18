@@ -19,33 +19,3 @@ import type { Note } from '@/types/note';
 
 defineProps<{ note: Note }>();
 </script>
-
-<style lang="scss" scoped>
-.note-feed-item {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  background: #F5F5F5;
-  padding: 10px;
-  border-radius: 20px;
-}
-
-span {
-  &.tag {
-    padding: 3px 5px;
-    background: rgba(255, 0, 0, 0.3);
-    color: #FF0000;
-    border-radius: 7px;
-  }
-
-  &.tag-product {
-    background: rgba(165, 42, 42, 0.3);
-    color: #A52A2A;
-  }
-
-  &.tag-place {
-    background: rgba(0, 0, 255, 0.3);
-    color: #0000FF;
-  }
-}
-</style>
