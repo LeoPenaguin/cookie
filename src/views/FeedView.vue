@@ -1,35 +1,39 @@
 <template>
-  <main>
-    <h1 class="text-2xl font-bold">Feed view</h1>
+  <main class="max-w-2xl mx-auto">
+    <h1 class="text-2xl font-bold mb-6">Cookie Ratings</h1>
 
-    <div v-for="group in groupedNotes" :key="group.date" class="space-y-3">
-      <h3 class="text-lg">{{ formatRelativeDate(group.date) }}</h3>
+    <div v-for="group in groupedRatings" :key="group.date" class="space-y-3 mb-6">
+      <h3 class="text-lg font-medium">{{ formatRelativeDate(group.date) }}</h3>
       <div class="space-y-3">
-        <NoteFeedItem v-for="note in group.notes" :key="note.id" :note="note" />
+        <RatingFeedItem v-for="rating in group.ratings" :key="rating.id" :rating="rating" />
       </div>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import useNoteStore from '@/stores/noteStore';
-import NoteFeedItem from '@/components/NoteFeedItem.vue';
-import { computed } from 'vue';
+import { useRatingStore } from '@/stores/ratingStore';
+import RatingFeedItem from '@/components/RatingFeedItem.vue';
+import { computed, onMounted } from 'vue';
 import { formatRelativeDate } from '@/utils/dateFormatter';
-import type { Note } from '@/types/note';
+import type { Rating } from '@/types/Rating';
 
-const noteStore = useNoteStore();
+const ratingStore = useRatingStore();
 
-const groupedNotes = computed(() => {
-  const groups: { [key: string]: Note[] } = {};
-  noteStore.sortedNotes.forEach(note => {
-    const date = note.createdAt.split('T')[0];
+onMounted(() => {
+  ratingStore.fetchRatings();
+});
+
+const groupedRatings = computed(() => {
+  const groups: { [key: string]: Rating[] } = {};
+  ratingStore.ratings.forEach(rating => {
+    const date = rating.createdAt.toISOString().split('T')[0];
     if (!groups[date]) groups[date] = [];
-    groups[date].push(note);
+    groups[date].push(rating);
   });
 
   return Object.entries(groups)
-    .sort((a, b) => new Date(b[0]).getTime() - new Date(a[0]).getTime())
-    .map(([date, notes]) => ({ date, notes }));
+    .sort(([a], [b]) => new Date(b).getTime() - new Date(a).getTime())
+    .map(([date, ratings]) => ({ date, ratings }));
 });
 </script>
