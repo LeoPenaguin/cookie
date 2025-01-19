@@ -21,7 +21,5 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import StarIcon from '@/components/icons/StarIcon.vue';
-import CookieIcon from '@/components/icons/CookieIcon.vue';
-import HomeIcon from '@/components/icons/HomeIcon.vue';
+import { StarIcon, CookieIcon, HomeIcon } from '@/components/icons';
 </script>
