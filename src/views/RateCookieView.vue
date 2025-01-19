@@ -48,10 +48,11 @@ import StarRating from '@/components/StarRating.vue';
 import useFormStore from '@/stores/formStore';
 import { ref, computed } from 'vue';
 import { CookieIcon, StoreIcon } from '@/components/icons'
-import { collection, addDoc } from 'firebase/firestore';
-import { db } from '@/firebase/config';
+import { createRating } from '@/api/rating';
+import useAuthStore from '@/stores/authStore'; // Import the auth store
 
 const formStore = useFormStore();
+const authStore = useAuthStore(); // Use the auth store
 
 const selectedCookie = ref('');
 const selectedPlace = ref('');
@@ -89,16 +90,14 @@ async function handleSubmit() {
 
   isLoading.value = true;
   try {
-    const rating = {
-      cookie: selectedCookie.value,
-      place: selectedPlace.value,
-      flavor: flavor.value,
-      look: look.value,
-      texture: texture.value,
-      createdAt: new Date(),
-    };
-
-    await addDoc(collection(db, 'ratings'), rating);
+    await createRating(
+      authStore.user.uid,
+      selectedCookie.value,
+      selectedPlace.value,
+      flavor.value,
+      look.value,
+      texture.value
+    );
 
     // Reset form
     selectedCookie.value = '';

@@ -6,7 +6,7 @@
           {{ rating.userId === currentUserId ? 'you' : rating.userName }}
         </DataPill>
         <span class="text-gray-400">rated</span>
-        <DataPill variant="cookie">{{ rating.cookie }}</DataPill>
+        <DataPill variant="cookie">{{ rating.product }}</DataPill>
         <span class="text-gray-400">from</span>
         <DataPill variant="store">{{ rating.place }}</DataPill>
       </div>
@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Rating } from '@/types/Rating';
+import type { Rating } from '@/types/rating';
 import RatingStars from './RatingStars.vue';
 import DataPill from './DataPill.vue';
 

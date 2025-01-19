@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { db } from '@/firebase/config';
-import type { Rating } from '@/types/Rating';
+import type { Rating } from '@/types/rating';
 import { ref } from 'vue';
 
 export const useRatingStore = defineStore('rating', () => {
@@ -14,7 +14,7 @@ export const useRatingStore = defineStore('rating', () => {
       ratings.value = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
-        createdAt: doc.data().createdAt.toDate()
+        // createdAt: doc.data().createdAt.toDate()
       })) as Rating[];
     });
   };

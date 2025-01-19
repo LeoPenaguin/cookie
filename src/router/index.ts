@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import RateCookieView from '@/views/RateCookieView.vue'
-import LikeFeedView from '@/views/FeedView.vue'
-import UserView from '@/views/UserView.vue'
+import RatingFeedView from '@/views/RatingFeedView.vue'
 import PlaceListView from '@/views/PlaceListView.vue'
 import PlaceDetailView from '@/views/PlaceDetailView.vue'
 import useAuthStore from '@/stores/authStore';
@@ -23,13 +22,8 @@ const router = createRouter({
     {
       path: '/feed',
       name: 'feed',
-      component: LikeFeedView,
+      component: RatingFeedView,
       meta: { requiresAuth: true }
-    },
-    {
-      path: '/user/:id',
-      name: 'single user',
-      component: UserView,
     },
     {
       path: '/place-list',
