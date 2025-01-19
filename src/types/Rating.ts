@@ -2,8 +2,8 @@ interface Rating {
   id?: string;
   cookie: string;
   place: string;
-  flavor: number;  // Changed from taste
-  look: number;    // Changed from appearance
+  flavor: number;
+  look: number;
   texture: number;
   createdAt: Date;
 }

@@ -1,8 +1,8 @@
 <template>
-  <main class="max-w-2xl mx-auto">
+  <main>
     <h1 class="text-2xl font-bold mb-6">Cookie Ratings</h1>
 
-    <div v-for="group in groupedRatings" :key="group.date" class="space-y-3 mb-6">
+    <div v-for="group in groupedRatings" :key="group.date">
       <h3 class="text-lg font-medium">{{ formatRelativeDate(group.date) }}</h3>
       <div class="space-y-3">
         <RatingFeedItem v-for="rating in group.ratings" :key="rating.id" :rating="rating" />

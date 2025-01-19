@@ -1,7 +1,11 @@
 <template>
-  <article class="bg-opacity-50 bg-white backdrop-blur-xl rounded-2xl p-6">
+  <article>
     <header class="flex items-center gap-3 mb-4">
       <div class="flex items-center gap-2">
+        <DataPill variant="user">
+          {{ rating.userId === currentUserId ? 'you' : rating.userName }}
+        </DataPill>
+        <span class="text-gray-400">rated</span>
         <DataPill variant="cookie">{{ rating.cookie }}</DataPill>
         <span class="text-gray-400">from</span>
         <DataPill variant="store">{{ rating.place }}</DataPill>
@@ -32,5 +36,6 @@ import DataPill from './DataPill.vue';
 
 defineProps<{
   rating: Rating;
+  currentUserId: string;
 }>();
 </script>

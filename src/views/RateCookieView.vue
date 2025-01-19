@@ -1,5 +1,5 @@
 <template>
-  <main class="max-w-2xl mx-auto">
+  <main>
     <h1 class="text-2xl font-bold mb-6">Rate a cookie</h1>
 
     <form @submit.prevent="handleSubmit">
