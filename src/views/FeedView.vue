@@ -3,7 +3,7 @@
     <h1 class="text-2xl font-bold">Feed view</h1>
 
     <div v-for="group in groupedNotes" :key="group.date" class="space-y-3">
-      <h3 class="text-lg text-gray-600">{{ formatRelativeDate(group.date) }}</h3>
+      <h3 class="text-lg">{{ formatRelativeDate(group.date) }}</h3>
       <div class="space-y-3">
         <NoteFeedItem v-for="note in group.notes" :key="note.id" :note="note" />
       </div>

@@ -1,20 +1,28 @@
 <template>
-  <div class="app px-4">
+  <div class="app px-4 dark:bg-gray-900 dark:text-gray-200 min-h-screen">
     <TopBar class="position-top" />
-    <RouterView />
+    <div v-if="!authStore.loading">
+      <RouterView />
+    </div>
+    <div v-else class="text-gray-800 dark:text-gray-200">
+      Loading...
+    </div>
     <BottomNavigation class="position-bottom" />
-    <AuthModal v-if="authModal.isOpen" />
   </div>
 </template>
 
 <script setup lang="ts">
-import useAuthModalStore from '@/stores/authModalStore'
-import AuthModal from '@/components/auth/AuthModal.vue'
 import BottomNavigation from '@/components/BottomNavigation.vue'
 import TopBar from '@/components/TopBar.vue'
 import { RouterView } from 'vue-router'
+import { onMounted } from 'vue';
+import useAuthStore from '@/stores/authStore'
 
-const authModal = useAuthModalStore()
+const authStore = useAuthStore();
+
+onMounted(() => {
+  authStore.init();
+});
 </script>
 
 <style lang="scss">

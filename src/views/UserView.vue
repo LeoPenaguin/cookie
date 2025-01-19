@@ -2,19 +2,19 @@
   <main>
     <div v-if="user">
       <h1 class="text-2xl font-bold">{{ user.name }}</h1>
-      <div class="text-gray-600 mb-6">{{ user.email }}</div>
+      <div class="mb-6">{{ user.email }}</div>
 
       <div class="space-y-4">
         <h2 class="text-xl font-semibold">Notes</h2>
         <div v-if="groupedNotes.length" class="space-y-6">
           <div v-for="group in groupedNotes" :key="group.date" class="space-y-3">
-            <h3 class="text-lg text-gray-600">{{ formatRelativeDate(group.date) }}</h3>
+            <h3 class="text-lg">{{ formatRelativeDate(group.date) }}</h3>
             <div class="space-y-3">
               <NoteFeedItem v-for="note in group.notes" :key="note.id" :note="note" />
             </div>
           </div>
         </div>
-        <div v-else class="text-gray-500">
+        <div v-else>
           No notes yet
         </div>
       </div>
