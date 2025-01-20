@@ -5,11 +5,13 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  type User as FirebaseUser
+  type User as FirebaseUser,
+  type UserCredential
 } from 'firebase/auth'
 import { doc, setDoc, getDocs, query, collection, where } from 'firebase/firestore'
 import { auth, db } from '@/firebase/config'
 import type { User } from '@/types/user'
+import type { FirebaseError } from 'firebase/app'
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref<FirebaseUser | null>(null)
@@ -25,7 +27,7 @@ export const useAuthStore = defineStore('auth', () => {
       .replace(/[^a-z0-9]/g, '') // Enlève tous les caractères spéciaux
   }
 
-  async function registerUser(email: string, password: string, name: string) {
+  async function registerUser(email: string, password: string, name: string): Promise<UserCredential> {
     try {
       const cleanedName = cleanUsername(name)
 
@@ -55,21 +57,28 @@ export const useAuthStore = defineStore('auth', () => {
 
       return userCredential
     } catch (error) {
-      console.error('Error in registerUser:', error)
-      throw error
+      const firebaseError = error as FirebaseError
+      console.error('Error in registerUser:', firebaseError)
+      throw firebaseError
     }
   }
 
-  async function loginUser(email: string, password: string) {
-    return await signInWithEmailAndPassword(auth, email, password)
+  async function loginUser(email: string, password: string): Promise<UserCredential> {
+    try {
+      return await signInWithEmailAndPassword(auth, email, password)
+    } catch (error) {
+      const firebaseError = error as FirebaseError
+      console.error('Error in loginUser:', firebaseError)
+      throw firebaseError
+    }
   }
 
-  async function logoutUser() {
+  async function logoutUser(): Promise<void> {
     await signOut(auth)
     user.value = null
   }
 
-  async function init() {
+  async function init(): Promise<FirebaseUser | null> {
     return new Promise((resolve) => {
       onAuthStateChanged(auth, (currentUser) => {
         user.value = currentUser

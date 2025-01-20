@@ -26,6 +26,6 @@ const currentUserId = computed(() => {
 });
 
 onMounted(() => {
-  ratingStore.fetchRatings();
+  ratingStore.getRatings();
 });
 </script>

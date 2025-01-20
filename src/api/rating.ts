@@ -1,4 +1,4 @@
-import { collection, addDoc, updateDoc, doc, getDocs, query, where } from 'firebase/firestore';
+import { collection, addDoc, updateDoc, doc, getDocs, query, where, onSnapshot, orderBy } from 'firebase/firestore';
 import { db } from '@/firebase/config';
 import type { Rating } from '@/types/rating';
 
@@ -25,3 +25,15 @@ export async function getRatingsByUserId(userId: string) {
   const querySnapshot = await getDocs(q);
   return querySnapshot.docs.map(doc => doc.data() as Rating);
 }
+
+export const fetchRatings = (callback: (ratings: Rating[]) => void) => {
+  const q = query(collection(db, 'ratings'), orderBy('createdAt', 'desc'));
+
+  return onSnapshot(q, (snapshot) => {
+    const ratings = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as Rating[];
+    callback(ratings);
+  });
+};
