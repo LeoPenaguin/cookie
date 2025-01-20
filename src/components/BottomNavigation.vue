@@ -16,10 +16,14 @@
              [&.router-link-active]:bg-gray-100 dark:[&.router-link-active]:bg-gray-700">
       <StarIcon :size="34" class="text-black dark:text-white" />
     </RouterLink>
+    <RouterLink to="/search-users" class="flex flex-col items-center gap-1">
+      <UserIcon />
+      <span class="text-xs">Search</span>
+    </RouterLink>
   </nav>
 </template>
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import { StarIcon, CookieIcon, HomeIcon } from '@/components/icons';
+import { StarIcon, CookieIcon, HomeIcon, UserIcon } from '@/components/icons';
 </script>

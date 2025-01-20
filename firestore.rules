@@ -1,0 +1,54 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Fonction helper pour vérifier si l'utilisateur est authentifié 
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Fonction pour vérifier si un nom est unique
+    function isUsernameUnique(username) {
+      return !exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+             getAfter(/databases/$(database)/documents/users/$(request.auth.uid)).data.name == username;
+    }
+
+    // Règles pour la collection users
+    match /users/{userId} {
+      // Autoriser la lecture à tout le monde pour la recherche d'utilisateurs
+      allow read: if true;
+      
+      // Correction de la règle create
+      allow create: if request.auth != null 
+        && request.auth.uid == request.resource.data.uid  // Changement ici : vérifier l'uid dans les données
+        && request.resource.data.keys().hasAll(['name', 'email', 'uid', 'createdAt']); // Vérification directe de l'unicité
+
+      // Règle pour la mise à jour
+      allow update: if 
+        request.auth != null &&
+        request.auth.uid == userId;
+    }
+    
+    // Règles pour les demandes d'amis
+    match /friendRequests/{requestId} {
+      allow create: if isAuthenticated() && 
+                      request.resource.data.fromUserId == request.auth.uid;
+      allow read: if isAuthenticated() && (
+        request.auth.uid == resource.data.fromUserId || 
+        request.auth.uid == resource.data.toUserId
+      );
+      allow update: if isAuthenticated() && (
+        request.auth.uid == resource.data.toUserId && 
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
+      );
+    }
+
+    // Règles pour les ratings
+    match /ratings/{ratingId} {
+      allow create: if isAuthenticated() && 
+                      request.resource.data.userId == request.auth.uid;
+      allow read: if isAuthenticated();
+      allow update: if isAuthenticated() && 
+                      resource.data.userId == request.auth.uid;
+    }
+  }
+}

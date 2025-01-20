@@ -3,7 +3,8 @@ import {
     createUserWithEmailAndPassword,
     signOut,
     GoogleAuthProvider,
-    signInWithPopup
+    signInWithPopup,
+    updateProfile
 } from 'firebase/auth';
 import { auth } from '@/firebase/config';
 
@@ -19,9 +20,19 @@ export const AuthService = {
     },
 
     // Inscription avec email/mot de passe
-    registerWithEmail: async (email: string, password: string) => {
+    registerWithEmail: async ({ email, password, name }: {
+        email: string;
+        password: string;
+        name: string;
+    }) => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+            // Mettre à jour le profil utilisateur avec le nom
+            await updateProfile(userCredential.user, {
+                displayName: name
+            });
+
             return userCredential.user;
         } catch (error) {
             throw error;

@@ -2,6 +2,10 @@
   <main>
     <h1 class="text-2xl font-bold mb-6">Cookie Ratings</h1>
 
+    <div class="friends">
+      <RouterLink to="/friends" class="text-blue-500">Friends</RouterLink>
+    </div>
+
     <div class="space-y-3">
       <RatingFeedItem v-for="rating in ratingStore.ratings" :key="rating.id" :rating="rating"
         :current-user-id="currentUserId" />

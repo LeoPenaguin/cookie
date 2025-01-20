@@ -42,10 +42,26 @@ const router = createRouter({
       meta: { requiresAuth: false }
     },
     {
+      path: '/register',
+      name: 'register',
+      component: () => import('@/components/auth/Register.vue')
+    },
+    {
       path: '/dashboard',
       name: 'dashboard',
       component: () => import('@/views/DashboardView.vue'),
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/friends',
+      name: 'friends',
+      component: () => import('@/views/FriendsView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/search-users',
+      name: 'search-users',
+      component: () => import('@/views/SearchUsersView.vue')
     },
   ],
 })
